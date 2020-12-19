@@ -1,7 +1,6 @@
 // Declare the variables
 var passwordText = document.querySelector("#password");
 var generateBtn = document.querySelector("#generate");
-
 var lowerCaseCharacters = "abcdefghijklmnopqrstuvwxyz";
 var upperCaseCharacters = "ABCDEFGHIJKLMNOPQRSTUZWXYZ";
 var numericCharacters = "0123456789";
@@ -59,8 +58,7 @@ function generatePassword() {
               window.alert("You must choose at least one option of character types to include!");
             }
 
-            // If they chose at least 1 that was True, generate the password
-            // WHEN all prompts are answered THEN a password is generated that matches the selected criteria
+          // WHEN all prompts are answered and user chose at least 1 that was TRUE, THEN a password is generated that matches the selected criteria
 
             if(passwordLength >=8 && passwordLength <=128) {
               for(var i = 0; i < passwordLength; i++) {
@@ -71,19 +69,21 @@ function generatePassword() {
               localStorage.setItem("password", password);
               var password = localStorage.getItem("password");
               console.log(password);
+              return password;
             };
-          };
-
-// WHEN the password is generated THEN the password is either displayed in an alert or written to the page
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
 };
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+    // WHEN the password is generated THEN the password is either displayed in an alert or written to the page
+    // Write password to the #password input
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+    function writePassword() {
+      var password = generatePassword();
+      var passwordText = document.querySelector("#password");
+      passwordText.value = password;
+    };
+
+    // Get references to the #generate element
+    var generateBtn = document.querySelector("#generate");
+
+    // Add event listener to generate button
+    generateBtn.addEventListener("click", writePassword);
